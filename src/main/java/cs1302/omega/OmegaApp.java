@@ -31,7 +31,7 @@ public class OmegaApp extends Application {
     public void start(Stage stage) {
 
         Label instructions
-            = new Label("Use the arrow keys to move the snake.");
+            = new Label("Use the arrow keys to move the snake and eat the apples.");
 
         SnakeGame game = new SnakeGame();
 

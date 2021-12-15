@@ -52,7 +52,7 @@ public class SnakeGame extends VBox {
         super();
         setMinWidth(GRID_SIZE);
         setMinHeight(GRID_SIZE + 16);
-        this.fpsTarget = Duration.millis(400);
+        this.fpsTarget = Duration.millis(300);
         addEventFilter(KeyEvent.KEY_PRESSED, event -> getDirection(event));
         this.snake = new ArrayList<>();
         scoreText = new Text("Score: " + score);
@@ -66,9 +66,9 @@ public class SnakeGame extends VBox {
      * Initializes the snake game. The {@link #play} method calls this method once.
      */
     protected void init() {
-        snake.add(new Snake(10, 10));
-        snake.add(new Snake(9, 10));
         snake.add(new Snake(8, 10));
+        snake.add(new Snake(7, 10));
+        snake.add(new Snake(6, 10));
         getChildren().addAll(scoreText, canvas);
         // filling in background of game screen
         gc.setFill(Color.BLACK);
