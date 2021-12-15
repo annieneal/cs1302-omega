@@ -70,8 +70,10 @@ public class SnakeGame extends VBox {
         snake.add(new Snake(9, 10));
         snake.add(new Snake(8, 10));
         getChildren().addAll(scoreText, canvas);
+        // filling in background of game screen
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, GRID_SIZE, GRID_SIZE);
+        // filling in snake links
         for (Snake link : snake) {
             gc.setFill(Color.GREEN);
             gc.fillRect(link.x * BOX_SIZE, link.y * BOX_SIZE, BOX_SIZE, BOX_SIZE);
@@ -79,7 +81,6 @@ public class SnakeGame extends VBox {
         moveApple();
         gc.setFill(Color.RED);
         gc.fillOval(appleX * BOX_SIZE, appleY * BOX_SIZE, BOX_SIZE, BOX_SIZE);
-
     }
 
     /**
@@ -143,12 +144,16 @@ public class SnakeGame extends VBox {
             gc.fillText("Game Over", 170, 200);
             return;
         }
+        // variables to hold value of snake tail of the last frame
         tailX = snake.get(snake.size() - 1).x;
         tailY = snake.get(snake.size() - 1).y;
+        // moves snake to position for this frame
         for (int i  = snake.size() - 1; i >= 1; i--) {
             snake.get(i).x = snake.get(i - 1).x;
             snake.get(i).y = snake.get(i - 1).y;
         }
+        // if the snake eats the apple, the coordinates of the tail from the last frame
+        // are appended to the array list
         if (eatApple() == true) {
             snake.add(snake.size(), new Snake(tailX, tailY));
         }
@@ -156,6 +161,7 @@ public class SnakeGame extends VBox {
         if (checkWallCollision() || checkSelfCollision()) {
             gameOver = true;
         }
+        // redraws game screen
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, GRID_SIZE, GRID_SIZE);
         gc.setFill(Color.RED);
